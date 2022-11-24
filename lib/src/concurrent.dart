@@ -8,5 +8,7 @@ import 'package:stream_transform/stream_transform.dart';
 /// an order that does not match the order in which the corresponding events
 /// were added.
 EventTransformer<Event> concurrent<Event>() {
-  return (events, mapper) => events.concurrentAsyncExpand(mapper);
+  return (events, mapper) {
+    return events.concurrentAsyncExpand(mapper);
+  };
 }
