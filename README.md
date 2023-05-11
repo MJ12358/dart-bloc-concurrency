@@ -7,7 +7,7 @@ This is a copy of [bloc_concurrency](https://pub.dev/packages/bloc_concurrency) 
 Add this to your `pubspec.yaml` under `dependencies`
 
 ```yaml
-dart_bloc_concurrency: ^1.0.0
+dart_bloc_concurrency: ^1.1.0
 ```
 
 ## Usage
