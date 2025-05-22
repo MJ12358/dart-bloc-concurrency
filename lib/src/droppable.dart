@@ -7,8 +7,8 @@ import 'package:bloc/bloc.dart';
 ///
 /// **Note**: dropped events never trigger the event handler.
 EventTransformer<Event> droppable<Event>() {
-  return (events, mapper) {
-    return events.transform(_ExhaustMapStreamTransformer(mapper));
+  return (Stream<Event> events, EventMapper<Event> mapper) {
+    return events.transform(_ExhaustMapStreamTransformer<Event>(mapper));
   };
 }
 
@@ -22,7 +22,7 @@ class _ExhaustMapStreamTransformer<T> extends StreamTransformerBase<T, T> {
     late StreamSubscription<T> subscription;
     StreamSubscription<T>? mappedSubscription;
 
-    final controller = StreamController<T>(
+    final StreamController<T> controller = StreamController<T>(
       onCancel: () async {
         await mappedSubscription?.cancel();
         return subscription.cancel();
@@ -31,8 +31,10 @@ class _ExhaustMapStreamTransformer<T> extends StreamTransformerBase<T, T> {
     );
 
     subscription = stream.listen(
-      (data) {
-        if (mappedSubscription != null) return;
+      (T data) {
+        if (mappedSubscription != null) {
+          return;
+        }
         final Stream<T> mappedStream;
 
         mappedStream = mapper(data);

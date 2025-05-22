@@ -10,7 +10,7 @@ import 'package:stream_transform/stream_transform.dart';
 /// **Note**: there is no event handler overlap and any currently running tasks
 /// will be aborted if a new event is added before a prior one completes.
 EventTransformer<Event> restartable<Event>() {
-  return (events, mapper) {
+  return (Stream<Event> events, EventMapper<Event> mapper) {
     return events.switchMap(mapper);
   };
 }
