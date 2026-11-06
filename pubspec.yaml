@@ -1,6 +1,6 @@
 name: dart_bloc_concurrency
 description: Custom event transformers. Built to be used with the bloc state management package.
-version: 2.0.0
+version: 2.0.1
 repository: https://github.com/mj12358/dart-bloc-concurrency
 
 environment:
